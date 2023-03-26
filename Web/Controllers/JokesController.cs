@@ -10,11 +10,11 @@ using Web.Models;
 
 namespace Web.Controllers
 {
-    public class JokeController : Controller
+    public class JokesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public JokeController(ApplicationDbContext context)
+        public JokesController(ApplicationDbContext context)
         {
             _context = context;
         }
