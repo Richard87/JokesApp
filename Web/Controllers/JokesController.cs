@@ -159,5 +159,23 @@ namespace Web.Controllers
         {
           return (_context.Joke?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        public IActionResult ShowSearchForm()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> ShowSearchResults(string searchPhrase)
+        {
+            // var results = await _context.Joke
+            //     .Where(j => j.Question.Contains(searchPhrase))
+            //     .ToListAsync();
+            
+            var results = from j in _context.Joke
+                where j.Question.Contains(searchPhrase)
+                select j;
+            
+            return View("Index", results);
+        }
     }
 }
