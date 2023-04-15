@@ -6,7 +6,9 @@ public class Joke
     public string Question { get; set; }
     public string Answer { get; set; }
 
-    public Joke()
+    public Joke(string question, string answer)
     {
+        Question = question;
+        Answer = answer;
     }
 }

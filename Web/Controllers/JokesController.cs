@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Web.Data;
 using Web.Models;
@@ -174,13 +169,9 @@ namespace Web.Controllers
 
         public async Task<IActionResult> ShowSearchResults(string searchPhrase)
         {
-            // var results = await _context.Joke
-            //     .Where(j => j.Question.Contains(searchPhrase))
-            //     .ToListAsync();
-            
-            var results = from j in _context.Joke
-                where j.Question.Contains(searchPhrase)
-                select j;
+            var results = await _context.Joke
+                .Where(j => j.Question.Contains(searchPhrase))
+                .ToListAsync();
             
             return View("Index", results);
         }
